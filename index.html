@@ -7,7 +7,27 @@
 </head>
 <body>
   <h1>Spotify Beğenilen Şarkılar</h1>
-  <p>Bu araç sadece Beğenilen Şarkılar'ı temizlemek için kullanılacaktır.</p>
-  <button>Spotify'a Bağlan</button>
+  <p>Beğendiğin şarkıları yönetmek için Spotify'a bağlan.</p>
+
+  <button id="login">Spotify'a Bağlan</button>
+
+  <script>
+    const CLIENT_ID = "fdbc382aeb0f480785ae662cbac3ddd8";
+    const REDIRECT_URI = "https://hilalnex.github.io/liked-songs-cleaner/";
+
+    const SCOPES = "user-library-read user-library-modify";
+
+    document.getElementById("login").addEventListener("click", () => {
+      const params = new URLSearchParams({
+        client_id: CLIENT_ID,
+        response_type: "code",
+        redirect_uri: REDIRECT_URI,
+        scope: SCOPES
+      });
+
+      window.location.href =
+        "https://accounts.spotify.com/authorize?" + params.toString();
+    });
+  </script>
 </body>
 </html>
