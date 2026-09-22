@@ -137,10 +137,12 @@
           body: body
         }
       );
-
-      if (!response.ok) {
-        throw new Error("Spotify token alınamadı.");
-      }
+if (!response.ok) {
+  const errorText = await response.text();
+  throw new Error(
+    "Spotify token hatası: " + errorText
+  );
+}
 
       return await response.json();
     }
